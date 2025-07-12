@@ -39,6 +39,13 @@ pipeline{
                 }
             }
         }
+        stage('Crear red Docker si no existe') {
+            steps {
+                bat """
+                docker network inspect ${DOCKER_NETWORK} >nul 2>&1 || docker network create ${DOCKER_NETWORK}
+                """
+            }
+        }
         stage('Ejecutar contenedor'){
             steps{
                 bat "docker run --network ${DOCKER_NETWORK} --name ${CONTAINER_NAME} -p ${HOST_PORT}:${CONTAINER_PORT} -d ${DOCKER_IMAGE}"
