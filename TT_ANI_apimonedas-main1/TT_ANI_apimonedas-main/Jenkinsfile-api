@@ -42,7 +42,8 @@ pipeline{
         stage('Crear red Docker si no existe') {
             steps {
                 bat """
-                docker network inspect ${DOCKER_NETWORK} >nul 2>&1 || docker network create ${DOCKER_NETWORK}
+                docker network inspect ${DOCKER_NETWORK} >nul 2>&1
+                IF ERRORLEVEL 1 docker network create ${DOCKER_NETWORK}
                 """
             }
         }
