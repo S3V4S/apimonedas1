@@ -21,7 +21,7 @@ pipeline{
         stage('Construir imagen'){
             steps{
                 //dir("${DOCKER_BUILD_DIR}"){
-                    bat "docker build . -t ${DOCKER_IMAGE}"
+                    bat "docker build TT_ANI_apimonedas-main1/TT_ANI_apimonedas-main/ -f TT_ANI_apimonedas-main1/TT_ANI_apimonedas-main/Dockerfile -t ${DOCKER_IMAGE}"
                 //}
             }
         }
